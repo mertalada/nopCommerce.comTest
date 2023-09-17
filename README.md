@@ -1,5 +1,7 @@
                             nocCommerce.com Testng Project
-Code was written using testng in this Project                                  
+Code was written using testng and selenium in this Project                                  
+
+Test Environment: https://demo.nopcommerce.com
 
 Libiary Codes:                                    
 
