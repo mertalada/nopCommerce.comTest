@@ -1,9 +1,13 @@
+package YeniPaket;
+
 import Utility.*;
-import org.junit.Test;
+import org.testng.annotations.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
@@ -11,13 +15,15 @@ import java.util.List;
 
 
 public class TestCase extends BaseDriver {
+    Parent parent=new Parent();
     String desktopURL="https://demo.nopcommerce.com/desktops";
     ListElement le=new ListElement();
     SingleElement element=new SingleElement();
 
-    @Test
+    @Test(priority = 1)
     public void Register(){
-        driver.get("https://demo.nopcommerce.com/");
+
+
         WebElement register = driver.findElement(By.cssSelector("[class='ico-register']"));
         register.click();
         MyFunction.Wait(1);
@@ -74,6 +80,7 @@ public class TestCase extends BaseDriver {
     }
     @Test
     public void Login(){
+
         driver.get("https://demo.nopcommerce.com/");
         MyFunction.Wait(1);
 
@@ -104,6 +111,7 @@ public class TestCase extends BaseDriver {
     }
     @Test
     public void Tab_Menu_Control(){
+
        //anasayfa olduğumdan emin oldum.
         driver.get("https://demo.nopcommerce.com/");
         WebElement e = driver.findElement(By.xpath("//a[@class='ico-login']"));
@@ -136,6 +144,7 @@ public class TestCase extends BaseDriver {
     }
     @Test
     public void  Gift_Ordering_Process(){
+
         ElementsPage locatorList = new ElementsPage();
         SoftAssert _softAssert=new SoftAssert();
 
@@ -159,10 +168,35 @@ public class TestCase extends BaseDriver {
     @Test
     public void Computer_Ordering_Process() {
 
+        parent.myHover(element.computersMenu);
+        parent.myClick(element.desktops);
+        Boolean desktopURLAyni=driver.getCurrentUrl().equals(desktopURL);
+        Assert.assertTrue(desktopURLAyni,"Desktop sayfasına erişilemedi");
+        parent.myClick(element.buildYourOwnComputer);
+        parent.myScrollToElement(element.ramBox);
+        parent.mySelectbyIndex(element.ramBox,3);
+        parent.myClick(element.HDD320);
+        parent.myClick(element.addToCart);
+        parent.myScrollToElement(element.shoppingCart);
+        parent.myClick(element.shoppingCart);
     }
     @Test
-    public void Parameter_Search_Process(){
-
+    @Parameters("searchText")
+    public void Parameter_Search_Process(String searchWord){
+        parent.myHover(element.computersMenu);
+        parent.myClick(element.desktops);
+        Boolean desktopURLAyni=driver.getCurrentUrl().equals(desktopURL);
+        Assert.assertTrue(desktopURLAyni,"Desktop sayfasına erişilemedi");
+        parent.myClick(element.buildYourOwnComputer);
+        parent.myScrollToElement(element.ramBox);
+        parent.mySelectbyIndex(element.ramBox,3);
+        parent.myClick(element.HDD320);
+        parent.myClick(element.addToCart);
+        parent.myScrollToElement(element.shoppingCart);
+        parent.myClick(element.shoppingCart);
+        parent.mySendKeys(element.search,searchWord+ Keys.ENTER);
+        Assert.assertTrue(element.adobeSearchResult.getAttribute("text")
+                .trim().toLowerCase().contains("adobe"), "Aranan bulunamadı");
     }
 }
 

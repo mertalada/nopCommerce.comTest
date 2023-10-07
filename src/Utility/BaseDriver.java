@@ -12,12 +12,14 @@ public class BaseDriver {
     public static WebDriver wait;
 
 
+
     static {
 
         Logger logger = Logger.getLogger("");
         logger.setLevel(Level.SEVERE);
 
         driver = new ChromeDriver();
+        driver.get("https://demo.nopcommerce.com/");
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
