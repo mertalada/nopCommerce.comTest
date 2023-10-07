@@ -1,8 +1,11 @@
 import Utility.BaseDriver;
+import Utility.MyFunction;
+import Utility._parametreler;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
@@ -45,6 +48,30 @@ public class nopCommerce extends BaseDriver {
                     "Menu beklendiği gibi değil");
         }
     }
+    public void US06(){
+
+        _parametreler locatorList = new _parametreler();
+        SoftAssert _softAssert=new SoftAssert();
+
+        String red = "Enter valid";
+        String onay = "The product has been added to your shopping cart";
+
+        locatorList.giftCards.click();
+        locatorList.addToCart.click();
+        locatorList.receiptName.sendKeys("Rocky");
+        locatorList.receiptEmail.sendKeys("RockyBalboa@gmail.com");
+        locatorList.senderName.sendKeys("Arnold");
+        locatorList.senderEmail.sendKeys("ArnoldSchwarzenegger@gmail.com");
+        locatorList.message.sendKeys("There is no tomorrow");
+        MyFunction.Wait(1);
+        locatorList.addToCart2.click();
+
+        _softAssert.assertEquals(locatorList.enterValid.getText(), red,"Gerekli alanları doldurun");
+        MyFunction.Wait(1);
+        Assert.assertEquals(locatorList.shoppingCart.getText(),onay,"Onay mesajı alınamadı");
+        
+        
+    }
 
 
 
@@ -53,7 +80,7 @@ public class nopCommerce extends BaseDriver {
             
 
 
-    }
+
 
 
 
