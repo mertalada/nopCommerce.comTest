@@ -7,7 +7,7 @@
         <parameter name="searchText" value="Adobe Photoshop CS4"></parameter>
 
         <classes>
-            <class name="YeniPaket.TestCase"> </class>
+            <class name="TestCase"> </class>
         </classes>
     </test>
 
