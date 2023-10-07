@@ -4,12 +4,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class _parametreler {
-    public _parametreler() {
+public class ElementsPage{
+    public ElementsPage() {
         PageFactory.initElements(BaseDriver.driver, this);
     }
-
-
     @FindBy(partialLinkText = "Gift")
     public WebElement giftCards;
 
@@ -43,7 +41,6 @@ public class _parametreler {
 
     @FindBy(css = "[class='bar-notification success']")
     public WebElement shoppingCart;
-
 
 
 }
